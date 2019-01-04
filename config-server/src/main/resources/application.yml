@@ -3,3 +3,17 @@ server:
 spring:
   application:
     name: config-server
+
+    
+  cloud:
+    config:
+      server:
+        git:
+          uri: 
+            https://github.com/jiangzhangpeng/spring-cloud-learning/
+          search-paths:
+            config-repo
+          username: 
+            jiangzp_beijing@163.com
+          password:
+            Geiwo100kuaiqian
