@@ -1,0 +1,15 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:7001/eureka/
+management:
+  port: 8990
+server:
+  port: 8989
+spring:
+  application:
+    name: turbine
+turbine:
+  app-config: RIBBON-CONSUMER
+  cluster-name-expression: '"default"'
+  combine-host-port: true

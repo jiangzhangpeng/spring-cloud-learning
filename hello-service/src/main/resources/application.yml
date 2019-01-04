@@ -1,0 +1,19 @@
+endpoints:
+  shutdown:
+    enabled: true
+    sensitive: false
+eureka:
+  instance:
+    prefer-ip-address: true
+info:
+  app:
+    name: hello-service
+    version: 1.0.0.0
+management:
+  security:
+    enabled: false
+spring:
+  application:
+    name: hello-service
+  profiles:
+    active: dev

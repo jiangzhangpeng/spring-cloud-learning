@@ -1,0 +1,10 @@
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    serviceUrl:
+      defaultZone: http://localhost1:1111/eureka/,http://localhost2:1112/eureka/
+  instance:
+    hostname: localhost3
+server:
+  port: 1113
