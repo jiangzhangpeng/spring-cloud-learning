@@ -17,3 +17,8 @@ spring:
             jiangzp_beijing@163.com
           password:
             Geiwo100kuaiqian
+
+security:  user:    name: 
+      user
+    password:
+      123456abc

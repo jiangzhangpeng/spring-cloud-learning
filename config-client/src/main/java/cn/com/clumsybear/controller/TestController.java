@@ -12,7 +12,7 @@ public class TestController {
 	private String from;
 	
 	@RequestMapping("/from")
-	public String frin() {
+	public String from() {
 		return this.from;
 	}
 }
