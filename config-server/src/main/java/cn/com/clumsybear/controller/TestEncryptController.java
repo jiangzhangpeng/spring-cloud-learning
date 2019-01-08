@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class TestEncryptController {
-	@Value("${pass.value}")
+	//@Value("${pass.value}")
 	private String password;
 
 	@RequestMapping(value = "password", method = RequestMethod.GET)
