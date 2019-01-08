@@ -18,7 +18,16 @@ spring:
           password:
             Geiwo100kuaiqian
 
-security:  user:    name: 
-      user
-    password:
-      123456abc
+#security:#  user:#    name: 
+#      user
+#    password:
+#      123456abc
+      
+encrypt:  key:
+    chongxing
+
+#logging.level.org.springframework: debug
+
+pass:
+  value: 
+    {cipher}14a46ca0d87c97137f3624c1dd4905174a3ad0982fc8e55cc9748ab36ec512e4
