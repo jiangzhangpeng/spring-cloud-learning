@@ -1,10 +1,11 @@
 eureka:
   client:
-    fetch-registry: true
-    register-with-eureka: true
-    serviceUrl:
-      defaultZone: http://localhost:7001/eureka/
+    fetch-registry: false
+    register-with-eureka: false
+    #serviceUrl:
+    #  defaultZone: http://localhost:7001/eureka/
   instance:
     hostname: localhost
+
 server:
-  port: 7001
+  port: 1111
