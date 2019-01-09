@@ -12,10 +12,10 @@ public class TestController {
 	@Value("${from}")
 	private String from;
 	
-	//@Value("${pass.value}")
+	@Value("${jdbc.password}")
 	private String password;
 
-	@RequestMapping(value = "/password", method = RequestMethod.GET)
+	@RequestMapping(value = "/password1", method = RequestMethod.GET)
 	public String getPassword() {
 		return this.password;
 	}
