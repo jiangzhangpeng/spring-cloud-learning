@@ -7,13 +7,14 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.1.1.RELEASE</version>
-		<relativePath /> <!-- lookup parent from repository -->
+
 	</parent>
 	<groupId>cn.com.picc</groupId>
 	<artifactId>swxt-mail</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0.1-SNAPSHOT</version>
 	<name>swxt-mail</name>
 	<description>swxt-mail</description>
+	<packaging>jar</packaging>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -54,6 +55,16 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.oracle/ojdbc6 -->
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc6</artifactId>
+			<version>11.2.0.4.0-atlassian-hosted</version>
 		</dependency>
 	</dependencies>
 

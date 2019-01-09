@@ -1,5 +1,5 @@
 server:
   port: 
-    7002
+    8222
 spring:  application:    name: 
-      swxt-mail-service  profiles:    active:      dev
+      swxt-mail-service  profiles:    active:      prod
