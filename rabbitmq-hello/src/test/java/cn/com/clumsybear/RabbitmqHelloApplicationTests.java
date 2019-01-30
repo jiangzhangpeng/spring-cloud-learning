@@ -15,9 +15,9 @@ public class RabbitmqHelloApplicationTests {
 	@Autowired
 	private Sender sender;
 
-	@Test
-	public void contextLoads() {
-	}
+	/*
+	 * @Test public void contextLoads() { }
+	 */
 	
 	@Test
 	public void hello() {

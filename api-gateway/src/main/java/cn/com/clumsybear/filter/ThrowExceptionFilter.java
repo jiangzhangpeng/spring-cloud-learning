@@ -35,7 +35,7 @@ public class ThrowExceptionFilter extends ZuulFilter {
 	}
 
 	private void doSomething() {
-		throw new RuntimeException("Exist some error...");
+		//throw new RuntimeException("Exist some error...");
 	}
 
 	@Override
