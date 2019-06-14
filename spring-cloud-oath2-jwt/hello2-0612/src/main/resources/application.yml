@@ -1,0 +1,23 @@
+logging:
+  level:
+    org:
+      springframework:
+        security: debug
+server:
+  port: 8081
+spring:
+  application:
+    name: hello2-0612
+  redis:
+    sentinel:
+      master: mymaster
+      nodes: 192.168.253.136:26380,192.168.253.136:26381,192.168.253.136:26382
+    password: 123456
+    timeout: 1000
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8500/eureka/
+  instance:
+    ip-address: 10.1.19.188
+    prefer-ip-address: true

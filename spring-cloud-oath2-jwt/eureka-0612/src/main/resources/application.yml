@@ -1,0 +1,13 @@
+eureka:
+  server:
+    enable-self-preservation: false
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://localhost:8500/eureka/
+spring:
+  application:
+    name: eureka-0612
+server:
+  port: 8500

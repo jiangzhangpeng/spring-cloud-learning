@@ -1,0 +1,79 @@
+server:
+  port: 9200
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8500/eureka/
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    prefer-ip-address: true
+jdbc:
+  password: Ogc736gZiw0mi0Ri/IctpZ9JDZLiUVH2PmaZlK6n7jrGzjS4GZAVKUo8fdU8slzqmQKTnDw07o/geZ17AvsarQ==
+  pool:
+    init: 20
+    maxActive: 50
+    minIdle: 20
+  publicKey: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAKODdV1NqrxbG5+TBU/bpnRSKp8hXpO6kOeNAnYeplSdMYpeAo4AJ6vzt0gurvQCsS52CWlSKhkvJX1EcD3pfnUCAwEAAQ==
+  url: jdbc:postgresql://10.10.5.94:15432/swxtxxdb
+  username: swxtxx
+
+spring:
+  application:
+    name: auth-server
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    druid:
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000;config.decrypt=true;config.decrypt.key=${jdbc.publicKey}
+      filters: stat,wall,log4j,config
+      initialSize: ${jdbc.pool.init}
+      maxActive: ${jdbc.pool.maxActive}
+      maxPoolPreparedStatementPerConnectionSize: 20
+      maxWait: 60000
+      minEvictableIdleTimeMillis: 300000
+      minIdle: ${jdbc.pool.minIdle}
+      poolPreparedStatements: true
+      testOnBorrow: false
+      testOnReturn: false
+      testWhileIdle: true
+      timeBetweenEvictionRunsMillis: 60000
+      useGlobalDataSourceStat: true
+      validationQuery: SELECT 'x'
+    filter:
+      config:
+        enabled: true
+    name: druidDataSource
+    password: ${jdbc.password}
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: ${jdbc.url}
+    username: ${jdbc.username}
+    
+  redis:
+    sentinel:
+      master: mymaster
+      nodes: 192.168.253.135:26380,192.168.253.135:26381,192.168.253.135:26382
+    password: 123456
+    timeout: 1000
+    jedis:
+      pool:
+        #jedis最大分配对象
+        maxTotal: 1024
+        #jedis最大保存idel状态对象数
+        maxIdle: 200
+        #jedis池没有对象返回时，最大等待时间
+        maxWaitMillis: 10000
+        testOnBorrow: true
+        testOnReturn: true
+        blockWhenExhausted: false
+        #Idle时进行连接扫描
+        testWhileIdle: true
+        #表示idle object evitor两次扫描之间要sleep的毫秒数
+        timeBetweenEvictionRunsMillis: 30000
+        #表示idle object evitor每次扫描的最多的对象数
+        numTestsPerEvictionRun: 10
+        #表示一个对象至少停留在idle状态的最短时间，然后才能被idle object evitor扫描并驱逐；这一项只有在timeBetweenEvictionRunsMillis大于0时才有意义
+        minEvictableIdleTimeMillis: 60000
+ 
+logging:
+  level:
+    org.springframework.security: DEBUG

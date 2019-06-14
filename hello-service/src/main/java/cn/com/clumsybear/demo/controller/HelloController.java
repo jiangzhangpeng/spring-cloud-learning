@@ -20,7 +20,7 @@ public class HelloController {
 	@Autowired
 	private DiscoveryClient client;
 
-	@RequestMapping(value = "/hello", method = RequestMethod.GET)
+	@RequestMapping(value = "/hello111", method = RequestMethod.GET)
 	public String index() throws Exception {
 		ServiceInstance instance = client.getLocalServiceInstance();
 		int randomTime = new Random().nextInt(3000);
@@ -42,6 +42,24 @@ public class HelloController {
 	@RequestMapping(value = "/hello3", method = RequestMethod.POST)
 	public String hello(@RequestBody User user) {
 		return "Hello " + user.getName() + ", " + user.getAge();
+	}
+	
+	@RequestMapping(value = "/test-hello1", method = RequestMethod.GET)
+	public String hello1() throws Exception {
+		ServiceInstance instance = client.getLocalServiceInstance();
+		int randomTime = new Random().nextInt(3000);
+		//Thread.sleep(randomTime);
+		System.out.println("/test-hello1,host:" + instance.getHost() + ",service_id:" + instance.getServiceId());
+		return "Hello World!!!!!";
+	}
+	
+	@RequestMapping(value = "/hello", method = RequestMethod.GET)
+	public String hello() throws Exception {
+		ServiceInstance instance = client.getLocalServiceInstance();
+		int randomTime = new Random().nextInt(3000);
+		//Thread.sleep(randomTime);
+		System.out.println("/test-hello1,host:" + instance.getHost() + ",service_id:" + instance.getServiceId());
+		return "Hello World!!!!!";
 	}
 
 }

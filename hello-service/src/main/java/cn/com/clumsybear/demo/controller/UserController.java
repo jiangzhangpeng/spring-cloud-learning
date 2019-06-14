@@ -1,5 +1,7 @@
 package cn.com.clumsybear.demo.controller;
 
+import java.util.Random;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
@@ -25,5 +27,14 @@ public class UserController {
 		user.setGender("F");
 		user.setAge(6);
 		return user;
+	}
+	
+	@RequestMapping(value = "/test-user1", method = RequestMethod.GET)
+	public String hello1() throws Exception {
+		ServiceInstance instance = client.getLocalServiceInstance();
+		//int randomTime = new Random().nextInt(3000);
+		//Thread.sleep(randomTime);
+		System.out.println("/test-hello1,host:" + instance.getHost() + ",service_id:" + instance.getServiceId());
+		return "test user!!!!!";
 	}
 }

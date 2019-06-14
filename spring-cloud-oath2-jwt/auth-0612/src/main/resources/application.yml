@@ -1,0 +1,62 @@
+logging:
+  level:
+    org:
+      springframework:
+        security: debug
+server:
+  port: 8040
+  
+jdbc:
+  password: BrWCzklYtyVOYpQ8SRjOYG4moa98vyYKg7hKdrJPbcfIvVGgzET4NAoy7lX3kcO6YRyHykaw8NyliCOPjuelAg==
+  pool:
+    init: 20
+    maxActive: 50
+    minIdle: 20
+  publicKey: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAKu39uG9gCrf+OZZKBX4aAnPYOX50LmRXYMPG7AR66qWnzT+3CET1uVeWmHtg2tYBKuOogfvKHN4JzmWudw5+80CAwEAAQ==
+  url: jdbc:postgresql://10.10.5.93:15432/swxtxxdb
+  username: swxtxx
+  
+spring:
+  application:
+    name: auth-0612
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    druid:
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000;config.decrypt=true;config.decrypt.key=${jdbc.publicKey}
+      filters: stat,wall,log4j,config
+      initialSize: ${jdbc.pool.init}
+      maxActive: ${jdbc.pool.maxActive}
+      maxPoolPreparedStatementPerConnectionSize: 20
+      maxWait: 60000
+      minEvictableIdleTimeMillis: 300000
+      minIdle: ${jdbc.pool.minIdle}
+      poolPreparedStatements: true
+      testOnBorrow: false
+      testOnReturn: false
+      testWhileIdle: true
+      timeBetweenEvictionRunsMillis: 60000
+      useGlobalDataSourceStat: true
+      validationQuery: SELECT 'x'
+    filter:
+      config:
+        enabled: true
+    name: druidDataSource
+    password: ${jdbc.password}
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: ${jdbc.url}
+    username: ${jdbc.username}
+  redis:
+    sentinel:
+      master: mymaster
+      nodes: 192.168.253.136:26380,192.168.253.136:26381,192.168.253.136:26382
+    password: 123456
+    timeout: 1000
+
+    
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8500/eureka/
+  instance:
+    ip-address: 10.1.19.188
+    prefer-ip-address: true

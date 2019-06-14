@@ -1,0 +1,81 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8500/eureka/
+  instance:
+    ip-address: 10.1.19.188
+    prefer-ip-address: true
+server:
+  port: 9000
+spring:
+  application:
+    name: swxt-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          #lower-case-service-id: true
+      routes:
+      - id: hello-service
+        uri: lb://HELLO-SERVICE
+        predicates:
+          - Path=/hello/**
+        filters:
+          - StripPrefix=1
+          - name: RequestRateLimiter
+            args:
+              key-resolver: '#{@hostAddrKeyResolver}'
+              redis-rate-limiter.replenishRate: 1
+              redis-rate-limiter.burstCapacity: 3
+      - id: user-service1
+        uri: lb://HELLO-SERVICE
+        predicates:
+          - Path=/user/**
+        filters:
+          - StripPrefix=1
+          - name: RequestRateLimiter
+            args:
+              key-resolver: '#{@uriKeyResolver}'
+              redis-rate-limiter.replenishRate: 1
+              redis-rate-limiter.burstCapacity: 3
+      - id: user-service2
+        uri: lb://HELLO-SERVICE
+        predicates:
+          - Path=/user2/**
+        filters:
+          - StripPrefix=1
+          
+  #redis:
+  #  host: localhost
+  #  port: 6379
+   # database: 0
+  redis:
+    sentinel:
+      master: mymaster
+      nodes: 192.168.253.135:26380,192.168.253.135:26381,192.168.253.135:26382
+    password: 123456
+    timeout: 1000
+    jedis:
+      pool:
+        #jedis最大分配对象
+        maxTotal: 1024
+        #jedis最大保存idel状态对象数
+        maxIdle: 200
+        #jedis池没有对象返回时，最大等待时间
+        maxWaitMillis: 10000
+        testOnBorrow: true
+        testOnReturn: true
+        blockWhenExhausted: false
+        #Idle时进行连接扫描
+        testWhileIdle: true
+        #表示idle object evitor两次扫描之间要sleep的毫秒数
+        timeBetweenEvictionRunsMillis: 30000
+        #表示idle object evitor每次扫描的最多的对象数
+        numTestsPerEvictionRun: 10
+        #表示一个对象至少停留在idle状态的最短时间，然后才能被idle object evitor扫描并驱逐；这一项只有在timeBetweenEvictionRunsMillis大于0时才有意义
+        minEvictableIdleTimeMillis: 60000
+    
+logging:
+  level:
+    root: debug
