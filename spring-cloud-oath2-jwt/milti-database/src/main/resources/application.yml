@@ -7,7 +7,7 @@ spring:
     name: multi-database
   datasource:
     druid:
-      aop-patterns: cn.com.hellowood.dynamicdatasource.service.*
+      aop-patterns: cn.com.clumsybear.multidb.service.*
       initial-size: 5
       master:
         driver-class-name: org.postgresql.Driver
