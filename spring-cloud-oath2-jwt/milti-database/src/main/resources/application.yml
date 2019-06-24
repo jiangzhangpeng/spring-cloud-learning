@@ -1,0 +1,46 @@
+server:
+  port: 8040
+spring:
+  aop:
+    proxy-target-class: true
+  application:
+    name: multi-database
+  datasource:
+    druid:
+      aop-patterns: cn.com.hellowood.dynamicdatasource.service.*
+      initial-size: 5
+      master:
+        driver-class-name: org.postgresql.Driver
+        name: master
+        password: swxtxxJG2019
+        url: jdbc:postgresql://10.10.5.93:15432/swxtxxdb
+        username: swxtxx
+      max-active: 20
+      max-wait: 60000
+      min-idle: 5
+      pool-prepared-statements: false
+      slave-alpha:
+        driver-class-name: org.postgresql.Driver
+        name: SlaveAlpha
+        password: swxtxxJG2019
+        url: jdbc:postgresql://10.10.5.94:15432/swxtxxdb
+        username: swxtxx
+      slave-beta:
+        driver-class-name: org.postgresql.Driver
+        name: SlaveBeta
+        password: swxtxxJG2019
+        url: jdbc:postgresql://10.10.5.94:15432/swxtxxdb
+        username: swxtxx
+      stat-view-servlet:
+        enabled: true
+        login-password: admin
+        login-username: admin
+        reset-enable: true
+        url-pattern: /druid/*
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      use-global-data-source-stat: true
+      validation-query: SELECT 1
+      validation-query-timeout: 30000
+    type: com.alibaba.druid.pool.DruidDataSource
